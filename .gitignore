@@ -1,0 +1,12 @@
+# મૂળ ફોટા (WhatsApp / હસ્તલેખન) — રિપો માં નથી મૂકવા
+*.jpeg
+*.jpg
+*.png
+
+# બેકઅપ ફાઇલો
+balar-backup-*.json
+
+# સિસ્ટમ
+.DS_Store
+Thumbs.db
+.vscode/

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="gu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>બલર પરિવાર · એડમિન</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#8a5a2b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%238a5a2b'/%3E%3Ctext x='32' y='42' font-size='30' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E0%AA%AC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;600;700&family=Noto+Serif+Gujarati:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<!-- લૉગિન -->
+<div class="auth-wrap" id="authScreen" hidden>
+  <form class="auth-card card" id="loginForm" autocomplete="on">
+    <h1>બલર પરિવાર</h1>
+    <p class="muted">એડમિન લૉગિન</p>
+    <label class="field"><span>ઇમેઇલ</span><input class="input" type="email" id="email" required autocomplete="username"></label>
+    <label class="field"><span>પાસવર્ડ</span><input class="input" type="password" id="pw" required autocomplete="current-password"></label>
+    <div class="err" id="loginErr" role="alert"></div>
+    <button class="btn primary" type="submit" id="loginBtn">લૉગિન કરો</button>
+    <button class="btn ghost sm" type="button" id="forgot">પાસવર્ડ ભૂલી ગયા?</button>
+    <a class="btn ghost sm" href="index.html">← વ્યૂ પેજ પર જાઓ</a>
+  </form>
+</div>
+
+<!-- એડમિન નથી -->
+<div class="auth-wrap" id="denied" hidden>
+  <div class="auth-card card">
+    <h1>પરવાનગી નથી</h1>
+    <p class="muted">આ ખાતું હજુ એડમિન તરીકે ઉમેરાયું નથી. Firebase Console → Firestore માં <b>admins</b> કલેક્શન માં નીચેના ID નો ડોક્યુમેન્ટ બનાવો:</p>
+    <div class="code" id="myUid"></div>
+    <button class="btn" type="button" data-logout>લૉગઆઉટ</button>
+  </div>
+</div>
+
+<div id="boot" class="auth-wrap"><p class="muted">લોડ થાય છે…</p></div>
+
+<!-- એપ -->
+<div id="app" hidden>
+  <header class="abar">
+    <div class="abar-in">
+      <div class="brand"><b>બલર પરિવાર</b><span class="muted small">એડમિન</span><span class="mode" id="mode"></span></div>
+      <span class="who" id="who"></span>
+      <a class="btn sm" href="index.html" target="_blank" rel="noopener">વ્યૂ જુઓ ↗</a>
+      <div class="menu">
+        <button class="btn sm" type="button" id="menuBtn" aria-haspopup="true" aria-expanded="false">⋯ સાધનો</button>
+        <div class="menu-list card" id="menuList" hidden>
+          <button type="button" data-tool="root">+ નવી મૂળ વ્યક્તિ (પિતા વગર)</button>
+          <hr>
+          <button type="button" data-tool="export">⬇ બેકઅપ ડાઉનલોડ (JSON)</button>
+          <button type="button" data-tool="import">⬆ બેકઅપ માંથી ઉમેરો</button>
+          <button type="button" data-tool="seed">🌱 શરૂઆત નો ડેટા નાખો</button>
+          <button type="button" data-tool="reset" id="resetDemo">↺ ડેમો ડેટા ફરી થી</button>
+          <hr>
+          <button type="button" data-logout>લૉગઆઉટ</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="alayout">
+    <aside class="apane nav">
+      <div class="nav-top">
+        <div class="picker">
+          <span class="ico" aria-hidden="true">🔍</span>
+          <input class="input" id="navQ" type="search" placeholder="નામ શોધો…" autocomplete="off" aria-label="નામ શોધો">
+        </div>
+        <div class="small muted" id="navInfo"></div>
+      </div>
+      <div class="nav-tree" id="navTree"></div>
+    </aside>
+
+    <section class="apane editor" id="editor"></section>
+  </div>
+</div>
+
+<input type="file" id="fileIn" accept="application/json,.json" hidden>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/seed.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

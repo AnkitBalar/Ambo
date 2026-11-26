@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="gu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>બલર પરિવાર</title>
+<meta name="description" content="બલર પરિવાર — વંશાવળી, વંશ વૃક્ષ અને પરિવાર ની યાદી">
+<meta name="theme-color" content="#8a5a2b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%238a5a2b'/%3E%3Ctext x='32' y='42' font-size='30' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E0%AA%AC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;600;700&family=Noto+Serif+Gujarati:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+<div class="demo-note" id="demoNote" hidden>ડેમો મોડ — Firebase હજુ જોડાયેલું નથી, ડેટા ફક્ત આ બ્રાઉઝર માં છે.</div>
+
+<header class="hero">
+  <h1>બલર પરિવાર</h1>
+  <p>વંશાવળી · વંશ વૃક્ષ · પરિવાર ની યાદી</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="picker">
+      <span class="ico" aria-hidden="true">🔍</span>
+      <input class="input" id="q" type="search" placeholder="નામ શોધો… (દા.ત. ધર્મેશ)" autocomplete="off" aria-label="નામ શોધો">
+    </div>
+    <nav class="tabs" aria-label="વિભાગો">
+      <a href="#tree" data-tab="tree">વંશ વૃક્ષ</a>
+      <a href="#line" data-tab="line">વંશાવળી</a>
+      <a href="#fam" data-tab="fam">પરિવાર ની યાદી</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="loading" id="loading">લોડ થાય છે…</div>
+
+  <section class="view" id="v-tree" hidden>
+    <div class="view-head">
+      <div>
+        <h2>વંશ વૃક્ષ</h2>
+        <p>નામ પર દબાવો એટલે વિગત ખુલે · ▼ થી દિકરા ખોલો / બંધ કરો</p>
+      </div>
+      <div class="tools">
+        <button class="btn sm" type="button" data-all="open">બધું ખોલો</button>
+        <button class="btn sm" type="button" data-all="close">બધું બંધ</button>
+      </div>
+    </div>
+    <div id="treeBody"></div>
+  </section>
+
+  <section class="view" id="v-line" hidden>
+    <div class="view-head">
+      <div>
+        <h2>વંશાવળી</h2>
+        <p>કોઈ પણ વ્યક્તિ પસંદ કરો — મૂળ પુરુષ થી એમના સુધી ની પેઢી દેખાશે</p>
+      </div>
+    </div>
+    <div class="picker line-pick" style="margin-bottom:14px">
+      <span class="ico" aria-hidden="true">👤</span>
+      <input class="input" id="lineQ" type="search" placeholder="વ્યક્તિ પસંદ કરો…" autocomplete="off" aria-label="વ્યક્તિ પસંદ કરો">
+    </div>
+    <div id="lineBody"></div>
+  </section>
+
+  <section class="view" id="v-fam" hidden>
+    <div class="view-head">
+      <div>
+        <h2>પરિવાર ની યાદી</h2>
+        <p>દરેક પરિવાર માં બહેન, દિકરી અને દિકરા</p>
+      </div>
+      <div class="filters" id="famFilter">
+        <button class="chip on" type="button" data-f="info">બહેન/દિકરી ની માહિતી વાળા</button>
+        <button class="chip" type="button" data-f="all">બધા પરિવાર</button>
+      </div>
+    </div>
+    <div class="families" id="famBody"></div>
+  </section>
+</main>
+
+<p class="foot">માહિતી માં ભૂલ હોય તો પરિવાર ના એડમિન ને જણાવવું.</p>
+
+<div id="drawerHost"></div>
+<button class="totop" id="totop" type="button" aria-label="ઉપર જાઓ">↑</button>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/seed.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/view.js"></script>
+</body>
+</html>

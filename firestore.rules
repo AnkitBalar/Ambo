@@ -1,0 +1,38 @@
+rules_version = '2';
+
+// બલર પરિવાર — Firestore સુરક્ષા નિયમો
+// Firebase Console → Firestore Database → Rules માં આ આખું પેસ્ટ કરી "Publish" દબાવો.
+//
+// - people: બધા વાંચી શકે (વ્યૂ પેજ), ફક્ત એડમિન લખી શકે
+// - admins: admins/{uid} ડોક્યુમેન્ટ હોય એ જ એડમિન. આ કલેક્શન Console માંથી જ બદલાય.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    function validPerson() {
+      let d = request.resource.data;
+      return d.name is string && d.name.size() > 0 && d.name.size() <= 80
+        && d.gender in ['m', 'f']
+        && (d.fatherId == null || d.fatherId is string)
+        && (!('alias' in d) || (d.alias is string && d.alias.size() <= 80))
+        && (!('note' in d) || (d.note is string && d.note.size() <= 300))
+        && (!('order' in d) || d.order is number);
+    }
+
+    match /people/{id} {
+      allow read: if true;
+      allow create, update: if isAdmin() && validPerson();
+      allow delete: if isAdmin();
+    }
+
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+  }
+}
