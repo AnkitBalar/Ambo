@@ -1,19 +1,16 @@
 /* =========================================================
-   Firebase સેટિંગ
-   Firebase Console → Project settings → General → Your apps → Web app
-   ત્યાંથી firebaseConfig કોપી કરી નીચે મૂકો.
+Firebase સેટિંગ
+Firebase Console → Project settings → General → Your apps → Web app
+ત્યાંથી firebaseConfig કોપી કરી નીચે મૂકો.
 
-   જ્યાં સુધી અહીં "YOUR_..." લખેલું રહેશે ત્યાં સુધી સાઇટ "ડેમો મોડ" માં
-   ચાલશે (ડેટા ફક્ત આ બ્રાઉઝર માં સચવાશે).
-
-   નોંધ: આ કી ખાનગી નથી — વેબ એપ માટે બધા ને દેખાય એ સામાન્ય છે.
-   ડેટા ની સુરક્ષા firestore.rules થી થાય છે.
-   ========================================================= */
+નોંધ: આ કી ખાનગી નથી — વેબ એપ માટે બધા ને દેખાય એ સામાન્ય છે.
+ડેટા ની સુરક્ષા firestore.rules થી થાય છે.
+========================================================= */
 window.FIREBASE_CONFIG = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+apiKey: "AIzaSyCn50pemOk81DjD0t5F018epvCjwDEtnZM",
+authDomain: "balar-parivar.firebaseapp.com",
+projectId: "balar-parivar",
+storageBucket: "balar-parivar.firebasestorage.app",
+messagingSenderId: "673365712220",
+appId: "1:673365712220:web:92f90795104e41aba73599"
 };
