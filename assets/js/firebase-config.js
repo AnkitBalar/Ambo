@@ -10,10 +10,10 @@
    ડેટા ની સુરક્ષા firestore.rules થી થાય છે.
    ========================================================= */
 window.FIREBASE_CONFIG = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCmL0Z0RG00MKy6eroBpH5EuPZI6IvNhpc",
+  authDomain: "balar-parivar-71f51.firebaseapp.com",
+  projectId: "balar-parivar-71f51",
+  storageBucket: "balar-parivar-71f51.firebasestorage.app",
+  messagingSenderId: "552025347313",
+  appId: "1:552025347313:web:8db1e0d526fc2918138550"
 };
